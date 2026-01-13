@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X, Pill } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +19,7 @@ const Header = () => {
           {/* Logo */}
           <a href="#inicio" className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet to-primary flex items-center justify-center">
-              <Heart className="w-5 h-5 text-white" />
+              <Pill className="w-5 h-5 text-white" />
             </div>
             <span className="font-serif text-xl md:text-2xl font-bold bg-gradient-to-r from-violet via-violet-glow to-violet bg-clip-text text-transparent drop-shadow-[0_0_10px_hsl(var(--violet)/0.5)]">
               DRIKA CYTO
