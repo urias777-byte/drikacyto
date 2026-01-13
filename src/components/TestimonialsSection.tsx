@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -25,6 +25,16 @@ import depoimento16 from '@/assets/testimonials/depoimento-16.jpeg';
 import depoimento17 from '@/assets/testimonials/depoimento-17.jpeg';
 import depoimento18 from '@/assets/testimonials/depoimento-18.jpeg';
 import depoimento19 from '@/assets/testimonials/depoimento-19.jpeg';
+import depoimento20 from '@/assets/testimonials/depoimento-20.jpeg';
+import depoimento21 from '@/assets/testimonials/depoimento-21.jpeg';
+import depoimento22 from '@/assets/testimonials/depoimento-22.jpeg';
+import depoimento23 from '@/assets/testimonials/depoimento-23.jpeg';
+import depoimento24 from '@/assets/testimonials/depoimento-24.jpeg';
+import depoimento25 from '@/assets/testimonials/depoimento-25.jpeg';
+import depoimento26 from '@/assets/testimonials/depoimento-26.jpeg';
+import depoimento27 from '@/assets/testimonials/depoimento-27.jpeg';
+import depoimento28 from '@/assets/testimonials/depoimento-28.jpeg';
+import depoimento29 from '@/assets/testimonials/depoimento-29.jpeg';
 
 const TestimonialsSection = () => {
   const testimonialImages = [
@@ -47,6 +57,16 @@ const TestimonialsSection = () => {
     depoimento17,
     depoimento18,
     depoimento19,
+    depoimento20,
+    depoimento21,
+    depoimento22,
+    depoimento23,
+    depoimento24,
+    depoimento25,
+    depoimento26,
+    depoimento27,
+    depoimento28,
+    depoimento29,
   ];
 
   return (
@@ -66,6 +86,15 @@ const TestimonialsSection = () => {
             Milhares de mulheres já passaram por esse momento e encontraram em nós 
             o suporte que precisavam. Veja o que elas dizem.
           </p>
+        </div>
+
+        {/* Swipe instruction */}
+        <div className="flex items-center justify-center gap-2 mb-8 animate-pulse">
+          <ChevronLeft className="w-5 h-5 text-violet" />
+          <p className="text-sm md:text-base font-medium text-violet">
+            👆 Arraste para o lado para ver mais depoimentos
+          </p>
+          <ChevronRight className="w-5 h-5 text-violet" />
         </div>
 
         {/* Testimonial Images Carousel */}
