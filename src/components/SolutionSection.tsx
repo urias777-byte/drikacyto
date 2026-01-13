@@ -21,7 +21,7 @@ const SolutionSection = () => {
             </span>
             
             <h2 className="font-serif text-3xl md:text-5xl font-bold text-foreground mb-6">
-              CETOTYC - Sua escolha{' '}
+              CYTO - Sua escolha{' '}
               <span className="text-gradient-gold">segura</span>
             </h2>
             
@@ -58,7 +58,7 @@ const SolutionSection = () => {
 
               <div className="mt-4">
                 <h3 className="font-serif text-2xl font-bold text-foreground mb-2">
-                  Kit Completo CETOTYC
+                  Kit Completo CYTO
                 </h3>
                 <p className="text-muted-foreground mb-6">
                   Tudo que você precisa com suporte profissional incluso

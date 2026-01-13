@@ -1,3 +1,11 @@
+import { useEffect, useState } from 'react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import depoimento1 from '@/assets/testimonials/depoimento-1.jpeg';
 import depoimento2 from '@/assets/testimonials/depoimento-2.jpeg';
 import depoimento3 from '@/assets/testimonials/depoimento-3.jpeg';
@@ -7,6 +15,16 @@ import depoimento6 from '@/assets/testimonials/depoimento-6.jpeg';
 import depoimento7 from '@/assets/testimonials/depoimento-7.jpeg';
 import depoimento8 from '@/assets/testimonials/depoimento-8.jpeg';
 import depoimento9 from '@/assets/testimonials/depoimento-9.jpeg';
+import depoimento10 from '@/assets/testimonials/depoimento-10.jpeg';
+import depoimento11 from '@/assets/testimonials/depoimento-11.jpeg';
+import depoimento12 from '@/assets/testimonials/depoimento-12.jpeg';
+import depoimento13 from '@/assets/testimonials/depoimento-13.jpeg';
+import depoimento14 from '@/assets/testimonials/depoimento-14.jpeg';
+import depoimento15 from '@/assets/testimonials/depoimento-15.jpeg';
+import depoimento16 from '@/assets/testimonials/depoimento-16.jpeg';
+import depoimento17 from '@/assets/testimonials/depoimento-17.jpeg';
+import depoimento18 from '@/assets/testimonials/depoimento-18.jpeg';
+import depoimento19 from '@/assets/testimonials/depoimento-19.jpeg';
 
 const TestimonialsSection = () => {
   const testimonialImages = [
@@ -19,6 +37,16 @@ const TestimonialsSection = () => {
     depoimento7,
     depoimento8,
     depoimento9,
+    depoimento10,
+    depoimento11,
+    depoimento12,
+    depoimento13,
+    depoimento14,
+    depoimento15,
+    depoimento16,
+    depoimento17,
+    depoimento18,
+    depoimento19,
   ];
 
   return (
@@ -40,24 +68,33 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        {/* Testimonial Images Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {testimonialImages.map((image, index) => (
-            <div
-              key={index}
-              className="relative rounded-2xl overflow-hidden shadow-soft border border-border group hover:shadow-glow-violet transition-all duration-300 hover:scale-[1.02]"
-            >
-              <img
-                src={image}
-                alt={`Depoimento de cliente ${index + 1}`}
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
-              {/* Overlay gradient for consistency */}
-              <div className="absolute inset-0 bg-gradient-to-t from-violet/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-          ))}
-        </div>
+        {/* Testimonial Images Carousel */}
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full max-w-6xl mx-auto"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {testimonialImages.map((image, index) => (
+              <CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                <div className="relative rounded-2xl overflow-hidden shadow-soft border border-border group hover:shadow-glow-violet transition-all duration-300 hover:scale-[1.02]">
+                  <img
+                    src={image}
+                    alt={`Depoimento de cliente ${index + 1}`}
+                    className="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                  {/* Overlay gradient for consistency */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-violet/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-0 md:-left-12 bg-card/80 backdrop-blur-sm border-violet/30 text-violet hover:bg-violet hover:text-white" />
+          <CarouselNext className="right-0 md:-right-12 bg-card/80 backdrop-blur-sm border-violet/30 text-violet hover:bg-violet hover:text-white" />
+        </Carousel>
 
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">

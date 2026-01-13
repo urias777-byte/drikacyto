@@ -39,14 +39,6 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <a
-            href="#contato"
-            className="hidden md:inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-violet to-violet-glow text-white rounded-full font-medium hover:shadow-glow-violet transition-all duration-300 hover:scale-105"
-          >
-            Fale Conosco
-          </a>
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -70,13 +62,6 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#contato"
-              onClick={() => setIsMenuOpen(false)}
-              className="block mt-4 text-center py-3 bg-gradient-to-r from-violet to-violet-glow text-white rounded-full font-medium"
-            >
-              Fale Conosco
-            </a>
           </nav>
         )}
       </div>

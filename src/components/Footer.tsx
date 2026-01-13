@@ -63,7 +63,7 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-white/10 text-center">
           <p className="text-white/50 text-sm">
-            © {new Date().getFullYear()} Cuidar+. Todos os direitos reservados.
+            © 2020 Cuidar+. Todos os direitos reservados.
           </p>
           
         </div>
