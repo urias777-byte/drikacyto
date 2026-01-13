@@ -21,8 +21,8 @@ const Header = () => {
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet to-primary flex items-center justify-center">
               <Heart className="w-5 h-5 text-white" />
             </div>
-            <span className="font-serif text-2xl font-semibold text-foreground">
-              Cuidar<span className="text-gradient-violet">+</span>
+            <span className="font-serif text-xl md:text-2xl font-bold bg-gradient-to-r from-violet via-violet-glow to-violet bg-clip-text text-transparent drop-shadow-[0_0_10px_hsl(var(--violet)/0.5)]">
+              DRIKA CYTO
             </span>
           </a>
 
