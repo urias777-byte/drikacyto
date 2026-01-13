@@ -1,8 +1,6 @@
 import { Heart, Shield, Lock } from 'lucide-react';
-
 const Footer = () => {
-  return (
-    <footer className="relative py-12 bg-foreground">
+  return <footer className="relative py-12 bg-foreground">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo and description */}
@@ -67,13 +65,9 @@ const Footer = () => {
           <p className="text-white/50 text-sm">
             © {new Date().getFullYear()} Cuidar+. Todos os direitos reservados.
           </p>
-          <p className="text-white/30 text-xs mt-2">
-            Este site oferece informações e suporte. Consulte um profissional de saúde.
-          </p>
+          
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
