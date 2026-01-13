@@ -46,10 +46,6 @@ const HeroSection = () => {
                     </div>
                   </div>
                 )}
-                {/* Decorative badge */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-3 text-center">
-                  <p className="text-sm font-semibold text-violet">✨ Depoimento Real</p>
-                </div>
               </div>
             </div>
 
