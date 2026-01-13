@@ -1,31 +1,24 @@
-import { Star, Quote } from 'lucide-react';
+import depoimento1 from '@/assets/testimonials/depoimento-1.jpeg';
+import depoimento2 from '@/assets/testimonials/depoimento-2.jpeg';
+import depoimento3 from '@/assets/testimonials/depoimento-3.jpeg';
+import depoimento4 from '@/assets/testimonials/depoimento-4.jpeg';
+import depoimento5 from '@/assets/testimonials/depoimento-5.jpeg';
+import depoimento6 from '@/assets/testimonials/depoimento-6.jpeg';
+import depoimento7 from '@/assets/testimonials/depoimento-7.jpeg';
+import depoimento8 from '@/assets/testimonials/depoimento-8.jpeg';
+import depoimento9 from '@/assets/testimonials/depoimento-9.jpeg';
 
 const TestimonialsSection = () => {
-  const testimonials = [
-    {
-      name: 'Marina S.',
-      location: 'São Paulo, SP',
-      text: 'Estava com muito medo e insegura, mas o suporte que recebi foi incrível. Me senti acolhida do início ao fim. O produto chegou rápido e a embalagem era totalmente discreta.',
-      rating: 5,
-    },
-    {
-      name: 'Carla M.',
-      location: 'Rio de Janeiro, RJ',
-      text: 'A equipe estava disponível 24h, responderam todas as minhas dúvidas com paciência e cuidado. Recomendo muito para quem precisa de suporte nesse momento.',
-      rating: 5,
-    },
-    {
-      name: 'Ana P.',
-      location: 'Belo Horizonte, MG',
-      text: 'Confiei no serviço e não me arrependi. O processo foi seguro, discreto e tive acompanhamento profissional durante todo o tempo. Muito grata pelo suporte.',
-      rating: 5,
-    },
-    {
-      name: 'Juliana R.',
-      location: 'Curitiba, PR',
-      text: 'Precisava de ajuda urgente e encontrei esse serviço. Fui muito bem atendida, com respeito e sem julgamentos. A entrega foi mais rápida do que eu esperava.',
-      rating: 5,
-    },
+  const testimonialImages = [
+    depoimento1,
+    depoimento2,
+    depoimento3,
+    depoimento4,
+    depoimento5,
+    depoimento6,
+    depoimento7,
+    depoimento8,
+    depoimento9,
   ];
 
   return (
@@ -33,7 +26,7 @@ const TestimonialsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
-            Depoimentos
+            Depoimentos Reais
           </span>
           
           <h2 className="font-serif text-3xl md:text-5xl font-bold text-foreground mb-6">
@@ -47,37 +40,21 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {testimonials.map((testimonial, index) => (
+        {/* Testimonial Images Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {testimonialImages.map((image, index) => (
             <div
               key={index}
-              className="relative p-6 md:p-8 bg-card rounded-2xl shadow-soft border border-border"
+              className="relative rounded-2xl overflow-hidden shadow-soft border border-border group hover:shadow-glow-violet transition-all duration-300 hover:scale-[1.02]"
             >
-              {/* Quote icon */}
-              <Quote className="absolute top-6 right-6 w-10 h-10 text-violet/10" />
-              
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-gold text-gold" />
-                ))}
-              </div>
-              
-              {/* Text */}
-              <p className="text-foreground mb-6 leading-relaxed">
-                "{testimonial.text}"
-              </p>
-              
-              {/* Author */}
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet to-primary flex items-center justify-center text-white font-semibold">
-                  {testimonial.name.charAt(0)}
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.location}</p>
-                </div>
-              </div>
+              <img
+                src={image}
+                alt={`Depoimento de cliente ${index + 1}`}
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+              {/* Overlay gradient for consistency */}
+              <div className="absolute inset-0 bg-gradient-to-t from-violet/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
         </div>
