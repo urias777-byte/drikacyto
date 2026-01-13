@@ -89,12 +89,14 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Swipe instruction */}
-        <div className="flex items-center justify-center gap-2 mb-8 animate-pulse">
-          <ChevronLeft className="w-5 h-5 text-violet" />
-          <p className="text-sm md:text-base font-medium text-violet">
-            👆 Arraste para o lado para ver mais depoimentos
-          </p>
-          <ChevronRight className="w-5 h-5 text-violet" />
+        <div className="flex items-center justify-center mb-8">
+          <div className="flex items-center gap-2 px-6 py-3 rounded-full border-2 border-violet bg-violet/10 animate-pulse">
+            <ChevronLeft className="w-5 h-5 text-violet" />
+            <p className="text-sm md:text-base font-medium text-violet">
+              👆 Arraste para o lado para ver mais depoimentos
+            </p>
+            <ChevronRight className="w-5 h-5 text-violet" />
+          </div>
         </div>
 
         {/* Testimonial Images Carousel */}
