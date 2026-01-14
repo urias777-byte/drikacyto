@@ -54,48 +54,6 @@ const MoleculeBackground = () => {
       }));
     };
 
-    const drawHoneycomb = () => {
-      if (!ctx) return;
-      
-      const hexSize = isMobile ? 40 : 50;
-      const hexHeight = hexSize * Math.sqrt(3);
-      const hexWidth = hexSize * 2;
-      
-      ctx.strokeStyle = 'hsla(270, 50%, 70%, 0.08)';
-      ctx.lineWidth = 1;
-      
-      const cols = Math.ceil(canvas.width / (hexWidth * 0.75)) + 2;
-      const rows = Math.ceil(canvas.height / hexHeight) + 2;
-      
-      for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-          const x = col * hexWidth * 0.75;
-          const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-          
-          drawHexagon(x, y, hexSize);
-        }
-      }
-    };
-
-    const drawHexagon = (centerX: number, centerY: number, size: number) => {
-      if (!ctx) return;
-      
-      ctx.beginPath();
-      for (let i = 0; i < 6; i++) {
-        const angle = (Math.PI / 3) * i - Math.PI / 6;
-        const x = centerX + size * Math.cos(angle);
-        const y = centerY + size * Math.sin(angle);
-        
-        if (i === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
-      }
-      ctx.closePath();
-      ctx.stroke();
-    };
-
     const drawMolecule = (molecule: Molecule) => {
       if (!ctx) return;
       
@@ -167,7 +125,6 @@ const MoleculeBackground = () => {
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      drawHoneycomb();
       drawConnections();
       moleculesRef.current.forEach(drawMolecule);
       updateMolecules();
