@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Molecule {
   x: number;
@@ -13,6 +13,18 @@ const MoleculeBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const moleculesRef = useRef<Molecule[]>([]);
   const animationRef = useRef<number>();
+  const isScrollingRef = useRef(false);
+  const scrollTimeoutRef = useRef<number>();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,33 +39,39 @@ const MoleculeBackground = () => {
     };
 
     const createMolecules = () => {
-      const count = Math.floor((canvas.width * canvas.height) / 25000);
-      moleculesRef.current = Array.from({ length: count }, () => ({
+      // Reduce particle count significantly on mobile
+      const densityFactor = isMobile ? 80000 : 25000;
+      const count = Math.floor((canvas.width * canvas.height) / densityFactor);
+      const maxCount = isMobile ? 15 : 50;
+      
+      moleculesRef.current = Array.from({ length: Math.min(count, maxCount) }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        radius: Math.random() * 4 + 2,
-        opacity: Math.random() * 0.4 + 0.2,
+        vx: (Math.random() - 0.5) * (isMobile ? 0.15 : 0.3),
+        vy: (Math.random() - 0.5) * (isMobile ? 0.15 : 0.3),
+        radius: Math.random() * 3 + 2,
+        opacity: Math.random() * 0.3 + 0.2,
       }));
     };
 
     const drawMolecule = (molecule: Molecule) => {
       if (!ctx) return;
       
-      // Outer glow
-      const gradient = ctx.createRadialGradient(
-        molecule.x, molecule.y, 0,
-        molecule.x, molecule.y, molecule.radius * 3
-      );
-      gradient.addColorStop(0, `hsla(270, 55%, 55%, ${molecule.opacity})`);
-      gradient.addColorStop(0.5, `hsla(270, 55%, 55%, ${molecule.opacity * 0.3})`);
-      gradient.addColorStop(1, 'hsla(270, 55%, 55%, 0)');
-      
-      ctx.beginPath();
-      ctx.arc(molecule.x, molecule.y, molecule.radius * 3, 0, Math.PI * 2);
-      ctx.fillStyle = gradient;
-      ctx.fill();
+      // Simplified drawing on mobile - skip outer glow
+      if (!isMobile) {
+        const gradient = ctx.createRadialGradient(
+          molecule.x, molecule.y, 0,
+          molecule.x, molecule.y, molecule.radius * 3
+        );
+        gradient.addColorStop(0, `hsla(270, 55%, 55%, ${molecule.opacity})`);
+        gradient.addColorStop(0.5, `hsla(270, 55%, 55%, ${molecule.opacity * 0.3})`);
+        gradient.addColorStop(1, 'hsla(270, 55%, 55%, 0)');
+        
+        ctx.beginPath();
+        ctx.arc(molecule.x, molecule.y, molecule.radius * 3, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
 
       // Core
       ctx.beginPath();
@@ -65,7 +83,7 @@ const MoleculeBackground = () => {
     const drawConnections = () => {
       if (!ctx) return;
       const molecules = moleculesRef.current;
-      const maxDistance = 150;
+      const maxDistance = isMobile ? 100 : 150;
 
       for (let i = 0; i < molecules.length; i++) {
         for (let j = i + 1; j < molecules.length; j++) {
@@ -98,6 +116,13 @@ const MoleculeBackground = () => {
 
     const animate = () => {
       if (!ctx) return;
+      
+      // Skip animation frames while scrolling on mobile
+      if (isMobile && isScrollingRef.current) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       drawConnections();
@@ -105,6 +130,21 @@ const MoleculeBackground = () => {
       updateMolecules();
       
       animationRef.current = requestAnimationFrame(animate);
+    };
+
+    // Handle scroll events - pause animation while scrolling
+    const handleScroll = () => {
+      if (isMobile) {
+        isScrollingRef.current = true;
+        
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+        
+        scrollTimeoutRef.current = window.setTimeout(() => {
+          isScrollingRef.current = false;
+        }, 150);
+      }
     };
 
     resizeCanvas();
@@ -115,14 +155,20 @@ const MoleculeBackground = () => {
       resizeCanvas();
       createMolecules();
     });
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
       window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <canvas
