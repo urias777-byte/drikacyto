@@ -1,17 +1,7 @@
 import { CheckCircle, Package, Clock, Shield } from 'lucide-react';
-
 const SolutionSection = () => {
-  const features = [
-    'Eficácia comprovada internacionalmente',
-    'Uso aprovado pela OMS',
-    'Acompanhamento profissional incluso',
-    'Orientação completa de uso',
-    'Sigilo e discrição garantidos',
-    'Suporte antes, durante e após',
-  ];
-
-  return (
-    <section id="solucao" className="relative py-24">
+  const features = ['Eficácia comprovada internacionalmente', 'Uso aprovado pela OMS', 'Acompanhamento profissional incluso', 'Orientação completa de uso', 'Sigilo e discrição garantidos', 'Suporte antes, durante e após'];
+  return <section id="solucao" className="relative py-24">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -20,30 +10,25 @@ const SolutionSection = () => {
               Nossa Solução
             </span>
             
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="font-serif text-3xl md:text-5xl font-bold mb-6 text-violet-400">
               CYTO - Sua escolha{' '}
               <span className="text-gradient-gold">segura</span>
             </h2>
             
-            <p className="text-lg text-foreground/80 mb-8">
+            <p className="text-lg mb-8 text-violet-300">
               Oferecemos um medicamento reconhecido mundialmente por sua eficácia e segurança. 
               Com orientação profissional e suporte completo, garantimos que você tenha toda a 
               informação e acompanhamento necessários.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3">
+              {features.map((feature, index) => <div key={index} className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-violet flex-shrink-0" />
-                  <span className="text-foreground">{feature}</span>
-                </div>
-              ))}
+                  <span className="text-violet-300">{feature}</span>
+                </div>)}
             </div>
 
-            <a
-              href="#contato"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-gold to-gold-glow text-white rounded-full font-semibold text-lg shadow-gold hover:scale-105 transition-all duration-300"
-            >
+            <a href="#contato" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-gold to-gold-glow text-white rounded-full font-semibold text-lg shadow-gold hover:scale-105 transition-all duration-300">
               Solicitar Informações
             </a>
           </div>
@@ -108,8 +93,6 @@ const SolutionSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SolutionSection;
