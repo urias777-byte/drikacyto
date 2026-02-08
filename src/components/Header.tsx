@@ -13,7 +13,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-card/80 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-40 bg-foreground/95 backdrop-blur-md border-b border-white/10">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -32,7 +32,7 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-muted-foreground hover:text-violet transition-colors font-medium"
+                className="text-white/70 hover:text-violet-light transition-colors font-medium"
               >
                 {link.label}
               </a>
@@ -42,7 +42,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-white"
             aria-label="Menu"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -51,13 +51,13 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border animate-fade-in">
+          <nav className="md:hidden py-4 border-t border-white/10 animate-fade-in">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block py-3 text-foreground hover:text-violet transition-colors font-medium"
+                className="block py-3 text-white/70 hover:text-violet-light transition-colors font-medium"
               >
                 {link.label}
               </a>
