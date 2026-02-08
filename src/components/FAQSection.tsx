@@ -42,7 +42,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="relative py-24 bg-secondary/30">
+    <section id="faq" className="relative py-24">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 bg-violet/10 rounded-full text-sm font-medium text-violet mb-4">
@@ -54,7 +54,7 @@ const FAQSection = () => {
             <span className="text-gradient-violet">frequentes</span>
           </h2>
           
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-foreground/80">
             Reunimos as dúvidas mais comuns para te ajudar. Se não encontrar sua 
             resposta, entre em contato conosco.
           </p>
@@ -66,12 +66,12 @@ const FAQSection = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-card rounded-2xl border-2 border-violet/50 px-6 shadow-soft hover:border-violet transition-colors"
+                className="bg-card/80 backdrop-blur-sm rounded-2xl border-2 border-violet/50 px-6 shadow-soft hover:border-violet transition-colors"
               >
                 <AccordionTrigger className="text-left font-serif text-lg font-semibold text-foreground hover:text-violet py-6">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6">
+                <AccordionContent className="text-foreground/70 pb-6">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -81,7 +81,7 @@ const FAQSection = () => {
 
         {/* Contact CTA */}
         <div id="contato" className="mt-16 text-center">
-          <p className="text-lg text-muted-foreground mb-6">
+          <p className="text-lg text-foreground/80 mb-6">
             Ainda tem dúvidas? Estamos aqui para ajudar.
           </p>
           <a

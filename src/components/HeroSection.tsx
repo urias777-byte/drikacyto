@@ -66,7 +66,7 @@ const HeroSection = () => {
               </h1>
 
               {/* Subheading */}
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-xl mx-auto lg:mx-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
                 Oferecemos suporte, orientação e soluções seguras para momentos delicados da sua vida. 
                 Com discrição absoluta e acompanhamento profissional.
               </p>
@@ -124,8 +124,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Decorative gradient overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 };
