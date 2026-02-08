@@ -25,7 +25,7 @@ const SolutionSection = () => {
               <span className="text-gradient-gold">segura</span>
             </h2>
             
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-lg text-foreground/80 mb-8">
               Oferecemos um medicamento reconhecido mundialmente por sua eficácia e segurança. 
               Com orientação profissional e suporte completo, garantimos que você tenha toda a 
               informação e acompanhamento necessários.
