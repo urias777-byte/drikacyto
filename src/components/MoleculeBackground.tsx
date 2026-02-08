@@ -174,7 +174,7 @@ const MoleculeBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ background: 'linear-gradient(135deg, hsl(280 30% 98%) 0%, hsl(330 40% 96%) 50%, hsl(270 35% 95%) 100%)' }}
+      style={{ background: 'linear-gradient(135deg, hsl(240 5% 15%) 0%, hsl(240 5% 12%) 50%, hsl(240 5% 10%) 100%)' }}
     />
   );
 };
