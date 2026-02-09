@@ -7,6 +7,7 @@ interface Molecule {
   vy: number;
   radius: number;
   opacity: number;
+  color: 'white' | 'pink' | 'purple';
 }
 
 const MoleculeBackground = () => {
@@ -44,31 +45,40 @@ const MoleculeBackground = () => {
       const count = Math.floor((canvas.width * canvas.height) / densityFactor);
       const maxCount = isMobile ? 15 : 50;
       
+      const colors: Array<'white' | 'pink' | 'purple'> = ['white', 'pink', 'purple'];
       moleculesRef.current = Array.from({ length: Math.min(count, maxCount) }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * (isMobile ? 0.15 : 0.3),
         vy: (Math.random() - 0.5) * (isMobile ? 0.15 : 0.3),
-        radius: Math.random() * 3 + 2,
-        opacity: Math.random() * 0.3 + 0.2,
+        radius: Math.random() * 5 + 4,
+        opacity: Math.random() * 0.4 + 0.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
       }));
     };
 
     const drawMolecule = (molecule: Molecule) => {
       if (!ctx) return;
+
+      const colorMap = {
+        white: { h: 0, s: 0, l: 95 },
+        pink: { h: 330, s: 70, l: 75 },
+        purple: { h: 270, s: 60, l: 40 },
+      };
+      const c = colorMap[molecule.color];
       
-      // Simplified drawing on mobile - skip outer glow
+      // Outer glow
       if (!isMobile) {
         const gradient = ctx.createRadialGradient(
           molecule.x, molecule.y, 0,
-          molecule.x, molecule.y, molecule.radius * 3
+          molecule.x, molecule.y, molecule.radius * 4
         );
-        gradient.addColorStop(0, `hsla(270, 55%, 55%, ${molecule.opacity})`);
-        gradient.addColorStop(0.5, `hsla(270, 55%, 55%, ${molecule.opacity * 0.3})`);
-        gradient.addColorStop(1, 'hsla(270, 55%, 55%, 0)');
+        gradient.addColorStop(0, `hsla(${c.h}, ${c.s}%, ${c.l + 15}%, ${molecule.opacity})`);
+        gradient.addColorStop(0.5, `hsla(${c.h}, ${c.s}%, ${c.l + 10}%, ${molecule.opacity * 0.4})`);
+        gradient.addColorStop(1, `hsla(${c.h}, ${c.s}%, ${c.l}%, 0)`);
         
         ctx.beginPath();
-        ctx.arc(molecule.x, molecule.y, molecule.radius * 3, 0, Math.PI * 2);
+        ctx.arc(molecule.x, molecule.y, molecule.radius * 4, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
         ctx.fill();
       }
@@ -76,7 +86,7 @@ const MoleculeBackground = () => {
       // Core
       ctx.beginPath();
       ctx.arc(molecule.x, molecule.y, molecule.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `hsla(270, 60%, 65%, ${molecule.opacity + 0.2})`;
+      ctx.fillStyle = `hsla(${c.h}, ${c.s}%, ${Math.min(c.l + 20, 100)}%, ${molecule.opacity + 0.3})`;
       ctx.fill();
     };
 
@@ -92,12 +102,12 @@ const MoleculeBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < maxDistance) {
-            const opacity = (1 - distance / maxDistance) * 0.3;
+            const opacity = (1 - distance / maxDistance) * 0.4;
             ctx.beginPath();
             ctx.moveTo(molecules[i].x, molecules[i].y);
             ctx.lineTo(molecules[j].x, molecules[j].y);
-            ctx.strokeStyle = `hsla(270, 50%, 60%, ${opacity})`;
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = `hsla(300, 40%, 70%, ${opacity})`;
+            ctx.lineWidth = 1.5;
             ctx.stroke();
           }
         }
