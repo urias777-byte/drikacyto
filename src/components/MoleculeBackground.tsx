@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface Pill {
   x: number;
@@ -18,14 +18,7 @@ const MoleculeBackground = () => {
   const animationRef = useRef<number>();
   const isScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef<number>();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const isMobileRef = useRef(window.innerWidth < 768);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -39,11 +32,12 @@ const MoleculeBackground = () => {
     };
 
     const createPills = () => {
-      const count = isMobile ? 25 : 60;
+      isMobileRef.current = window.innerWidth < 768;
+      const count = isMobileRef.current ? 40 : 100;
       const colors: Array<'white' | 'pink' | 'purple'> = ['white', 'pink', 'purple'];
       pillsRef.current = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height * 2 - canvas.height,
+        y: Math.random() * canvas.height,
         speed: Math.random() * 1.5 + 0.5,
         width: Math.random() * 4 + 3,
         height: Math.random() * 10 + 8,
@@ -70,7 +64,7 @@ const MoleculeBackground = () => {
       const r = pill.width / 2;
 
       // Glow
-      if (!isMobile) {
+      if (!isMobileRef.current) {
         ctx.shadowColor = `hsla(${c.h}, ${c.s}%, ${c.l + 15}%, ${pill.opacity})`;
         ctx.shadowBlur = 12;
       }
@@ -105,7 +99,7 @@ const MoleculeBackground = () => {
 
     const animate = () => {
       if (!ctx) return;
-      if (isMobile && isScrollingRef.current) {
+      if (isMobileRef.current && isScrollingRef.current) {
         animationRef.current = requestAnimationFrame(animate);
         return;
       }
@@ -116,7 +110,7 @@ const MoleculeBackground = () => {
     };
 
     const handleScroll = () => {
-      if (isMobile) {
+      if (isMobileRef.current) {
         isScrollingRef.current = true;
         if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
         scrollTimeoutRef.current = window.setTimeout(() => {
@@ -129,16 +123,17 @@ const MoleculeBackground = () => {
     createPills();
     animate();
 
-    window.addEventListener('resize', () => { resizeCanvas(); createPills(); });
+    const handleResize = () => { isMobileRef.current = window.innerWidth < 768; resizeCanvas(); createPills(); };
+    window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
       if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMobile]);
+  }, []);
 
   return (
     <canvas
