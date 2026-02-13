@@ -33,7 +33,7 @@ const MoleculeBackground = () => {
 
     const createPills = () => {
       isMobileRef.current = window.innerWidth < 768;
-      const count = isMobileRef.current ? 40 : 100;
+      const count = isMobileRef.current ? 70 : 180;
       const colors: Array<'white' | 'pink' | 'purple'> = ['white', 'pink', 'purple'];
       pillsRef.current = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
