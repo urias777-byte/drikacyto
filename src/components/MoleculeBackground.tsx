@@ -16,8 +16,6 @@ const MoleculeBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pillsRef = useRef<Pill[]>([]);
   const animationRef = useRef<number>();
-  const isScrollingRef = useRef(false);
-  const scrollTimeoutRef = useRef<number>();
   const isMobileRef = useRef(window.innerWidth < 768);
 
   useEffect(() => {
@@ -99,24 +97,10 @@ const MoleculeBackground = () => {
 
     const animate = () => {
       if (!ctx) return;
-      if (isMobileRef.current && isScrollingRef.current) {
-        animationRef.current = requestAnimationFrame(animate);
-        return;
-      }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       pillsRef.current.forEach(drawPill);
       updatePills();
       animationRef.current = requestAnimationFrame(animate);
-    };
-
-    const handleScroll = () => {
-      if (isMobileRef.current) {
-        isScrollingRef.current = true;
-        if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = window.setTimeout(() => {
-          isScrollingRef.current = false;
-        }, 150);
-      }
     };
 
     resizeCanvas();
@@ -125,13 +109,10 @@ const MoleculeBackground = () => {
 
     const handleResize = () => { isMobileRef.current = window.innerWidth < 768; resizeCanvas(); createPills(); };
     window.addEventListener('resize', handleResize);
-    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
