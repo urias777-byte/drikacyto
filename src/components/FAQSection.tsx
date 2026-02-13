@@ -61,7 +61,7 @@ const FAQSection = () => {
           <p className="text-lg mb-6 text-violet-500">
             Ainda tem dúvidas? Estamos aqui para ajudar.
           </p>
-          <a href="https://wa.me/5511999999999?text=Olá! Gostaria de mais informações." target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-violet to-violet-glow text-white rounded-full font-semibold text-lg hover:shadow-glow-violet transition-all duration-300 hover:scale-105">
+          <a href="https://wa.me/5519981699860?text=Olá estou querendo adquirir seus produtos." target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-violet to-violet-glow text-white rounded-full font-semibold text-lg hover:shadow-glow-violet transition-all duration-300 hover:scale-105">
             Falar pelo WhatsApp
           </a>
         </div>
