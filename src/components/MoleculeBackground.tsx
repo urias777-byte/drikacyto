@@ -31,7 +31,7 @@ const MoleculeBackground = () => {
 
     const createPills = () => {
       isMobileRef.current = window.innerWidth < 768;
-      const count = isMobileRef.current ? 70 : 180;
+      const count = isMobileRef.current ? 40 : 180;
       const colors: Array<'white' | 'pink' | 'purple'> = ['white', 'pink', 'purple'];
       pillsRef.current = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
@@ -54,6 +54,13 @@ const MoleculeBackground = () => {
         purple: { h: 270, s: 60, l: 40 },
       };
       const c = colorMap[pill.color];
+      ctx.fillStyle = `hsla(${c.h}, ${c.s}%, ${Math.min(c.l + 20, 100)}%, ${pill.opacity})`;
+
+      if (isMobileRef.current) {
+        // Simple filled rect for mobile performance
+        ctx.fillRect(pill.x - pill.width / 2, pill.y - pill.height / 2, pill.width, pill.height);
+        return;
+      }
 
       ctx.save();
       ctx.translate(pill.x, pill.y);
@@ -61,13 +68,9 @@ const MoleculeBackground = () => {
 
       const r = pill.width / 2;
 
-      // Glow
-      if (!isMobileRef.current) {
-        ctx.shadowColor = `hsla(${c.h}, ${c.s}%, ${c.l + 15}%, ${pill.opacity})`;
-        ctx.shadowBlur = 12;
-      }
+      ctx.shadowColor = `hsla(${c.h}, ${c.s}%, ${c.l + 15}%, ${pill.opacity})`;
+      ctx.shadowBlur = 12;
 
-      // Pill shape (rounded rect)
       ctx.beginPath();
       ctx.moveTo(-pill.width / 2, -pill.height / 2 + r);
       ctx.arcTo(-pill.width / 2, -pill.height / 2, pill.width / 2, -pill.height / 2, r);
@@ -76,9 +79,7 @@ const MoleculeBackground = () => {
       ctx.arcTo(-pill.width / 2, pill.height / 2, -pill.width / 2, -pill.height / 2, r);
       ctx.closePath();
 
-      ctx.fillStyle = `hsla(${c.h}, ${c.s}%, ${Math.min(c.l + 20, 100)}%, ${pill.opacity})`;
       ctx.fill();
-
       ctx.shadowBlur = 0;
       ctx.restore();
     };
