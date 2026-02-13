@@ -1,6 +1,6 @@
 const WhatsAppButton = () => {
   const handleClick = () => {
-    window.open('https://wa.me/5511999999999?text=Olá! Gostaria de mais informações.', '_blank');
+    window.open('https://wa.me/5519981699860?text=Olá estou querendo adquirir seus produtos.', '_blank');
   };
 
   return (
