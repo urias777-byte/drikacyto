@@ -58,11 +58,23 @@ const PricingSection = () => {
                   {tier.units} unidades
                 </p>
 
-                <div className="mb-6">
+                <div className="mb-4">
                   <p className="font-serif text-3xl font-bold text-gradient-gold">
                     {tier.price}
                   </p>
                 </div>
+
+                <div className="flex flex-wrap justify-center gap-1.5 mb-5">
+                  {['Pix', 'Boleto', 'Cartão 2x'].map((m) => (
+                    <span
+                      key={m}
+                      className="px-2.5 py-1 rounded-full border border-gold/40 bg-gold/5 text-gold text-[11px] font-medium"
+                    >
+                      {m}
+                    </span>
+                  ))}
+                </div>
+
 
                 <a
                   href={`https://wa.me/${WHATSAPP}?text=${msg}`}
