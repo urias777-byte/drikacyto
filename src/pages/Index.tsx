@@ -2,6 +2,7 @@ import MoleculeBackground from '@/components/MoleculeBackground';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import SolutionSection from '@/components/SolutionSection';
+import PricingSection from '@/components/PricingSection';
 import TrustSection from '@/components/TrustSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
@@ -20,6 +21,7 @@ const Index = () => {
         <main>
           <HeroSection />
           <SolutionSection />
+          <PricingSection />
           <TrustSection />
           <TestimonialsSection />
           <FAQSection />
