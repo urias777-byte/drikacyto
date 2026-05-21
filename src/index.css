@@ -201,6 +201,25 @@
     background: linear-gradient(135deg, hsl(280 80% 60%), hsl(270 90% 50%));
   }
 
+  /* Diagonal strike-through for old prices */
+  .price-strike {
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+  }
+  .price-strike::after {
+    content: '';
+    position: absolute;
+    left: -6%;
+    right: -6%;
+    top: 50%;
+    height: 4px;
+    background: hsl(0 85% 60%);
+    box-shadow: 0 0 6px hsl(0 85% 60% / 0.7);
+    transform: rotate(-12deg);
+    border-radius: 2px;
+  }
+
   /* Smooth scroll */
   html {
     scroll-behavior: smooth;
