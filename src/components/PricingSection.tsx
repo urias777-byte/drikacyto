@@ -60,10 +60,26 @@ const PricingSection = () => {
                 </p>
 
                 <div className="mb-4">
-                  <p className="font-serif text-3xl font-bold text-gradient-gold">
-                    {tier.price}
-                  </p>
+                  {(() => {
+                    const num = parseFloat(tier.price.replace('R$', '').replace(/\./g, '').replace(',', '.').trim());
+                    const oldNum = num * 1.18;
+                    const fmt = (n: number) => 'R$ ' + n.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.').replace(',', '#').replace('.', ',').replace('#', ',').replace(/,(\d{2})$/, ',$1');
+                    const format = (n: number) => 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    return (
+                      <>
+                        <p className="text-xs text-muted-foreground uppercase tracking-wider">de</p>
+                        <p className="text-base text-muted-foreground line-through decoration-2 decoration-rose-400/70">
+                          {format(oldNum)}
+                        </p>
+                        <p className="text-xs text-violet-100 uppercase tracking-wider mt-1">por</p>
+                        <p className="font-serif text-3xl font-bold text-gradient-gold">
+                          {tier.price}
+                        </p>
+                      </>
+                    );
+                  })()}
                 </div>
+
 
                 <div className="flex flex-wrap justify-center gap-1.5 mb-5">
                   {['Pix', 'Boleto', 'Cartão 2x'].map((m) => (
