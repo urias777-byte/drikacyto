@@ -68,8 +68,8 @@ const PricingSection = () => {
                     return (
                       <>
                         <p className="text-xs text-muted-foreground uppercase tracking-wider">de</p>
-                        <p className="text-base text-muted-foreground line-through decoration-2 decoration-rose-400/70">
-                          {format(oldNum)}
+                        <p className="text-lg text-muted-foreground">
+                          <span className="price-strike">{format(oldNum)}</span>
                         </p>
                         <p className="text-xs text-violet-100 uppercase tracking-wider mt-1">por</p>
                         <p className="font-serif text-3xl font-bold text-gradient-gold">
