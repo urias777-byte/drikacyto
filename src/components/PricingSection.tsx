@@ -52,8 +52,8 @@ const PricingSection = () => {
                   </div>
                 </div>
 
-                <h3 className="font-serif text-xl font-bold text-foreground mb-1">
-                  {tier.weeks} <span className="text-violet-300 text-base font-normal">semanas</span>
+                <h3 className="font-serif text-2xl font-bold text-white mb-1">
+                  {tier.weeks} <span className="text-violet-100 text-lg font-medium">semanas</span>
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   {tier.units} unidades
