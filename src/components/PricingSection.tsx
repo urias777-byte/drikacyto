@@ -88,21 +88,6 @@ const PricingSection = () => {
             );
           })}
         </div>
-
-        {/* Payment methods */}
-        <div className="mt-12 text-center">
-          <p className="text-sm text-violet-300 mb-3">Formas de pagamento</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {['Pix', 'Boleto', 'Cartão 2x sem juros'].map((m) => (
-              <span
-                key={m}
-                className="px-5 py-2 rounded-full border border-gold/40 bg-gold/5 text-gold font-medium text-sm"
-              >
-                {m}
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
