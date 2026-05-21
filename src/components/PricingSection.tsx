@@ -39,7 +39,8 @@ const PricingSection = () => {
             return (
               <div
                 key={i}
-                className="pricing-card group relative bg-card/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-violet/40 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2"
+                className="pricing-card group relative rounded-2xl p-6 border-2 border-violet/40 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2"
+                style={{ background: 'linear-gradient(160deg, hsl(240 6% 16%) 0%, hsl(240 6% 12%) 100%)' }}
               >
                 {/* Animated pill */}
                 <div className="relative mb-4 h-14 flex items-center justify-center">
