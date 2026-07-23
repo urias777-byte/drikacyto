@@ -11,7 +11,7 @@ const tiers = [
   { weeks: '18 a 19', range: '18 a 19 semanas', units: 18, price: 'R$ 1.850,00' },
 ];
 
-const WHATSAPP = '553498332213';
+const WHATSAPP = '5511953764223';
 
 const PricingSection = () => {
   return (
